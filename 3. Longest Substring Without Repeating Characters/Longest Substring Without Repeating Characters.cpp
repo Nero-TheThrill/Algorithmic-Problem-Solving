@@ -1,27 +1,25 @@
-#include<string>
-#include<iostream>
-#include <unordered_map>
-
 class Solution {
 public:
     int lengthOfLongestSubstring(std::string s) {
-        std::unordered_map<char, bool> m;
-        for(auto c : s)
+        int result=0,order=0,startpoint=-1;
+        std::unordered_map<char,int> map;
+        
+        for(auto c: s)
         {
-            auto d = m.find(c);
-            if(==m.end())
+            if(map.find(c)==map.end())
             {
-                
+                map.insert(std::pair<char, int>(c, order));
             }
+            else
+            {
+                startpoint = std::max(startpoint, map[c]);
+                map[c] = order;
+            }
+            result = std::max(result, order - startpoint);
+            order++;
         }
-        return ;
+
+
+        return result;
     }
 };
-
-int main()
-{
-    Solution s;
-   std::cout<<  s.lengthOfLongestSubstring("pwwkew");
-   return 0;
-}
-
